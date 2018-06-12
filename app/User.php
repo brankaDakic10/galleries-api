@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
-class User extends Authenticatable
+use Tymon\JWTAuth\Contracts\JWTSubject;
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -30,4 +30,15 @@ class User extends Authenticatable
     public function galleries() {
         return $this->hasMany(Gallery::class);
     }
+
+   //login
+    public function getJWTIdentifier() {
+          return $this->getKey();
+          //return 'id';
+      }
+   
+     public function getJWTCustomClaims()
+     { 
+          return [];
+     }
 }
