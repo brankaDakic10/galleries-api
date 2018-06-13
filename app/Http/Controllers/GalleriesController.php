@@ -16,18 +16,25 @@ class GalleriesController extends Controller
 {
     public function index(Request $request) 
     {
-        return Gallery::all();
+        $galleries = Gallery::with([
+          'images',
+            'user',
+            'comments'
+         ])->get();
+       
+        return $galleries;
     }
 
     public function show($id)
     {
-        return Gallery::with([
+        $gallery= Gallery::with([
             
             'images',
             'user',
             'comments'
             
         ])->find($id);
+        return $gallery;
         
     }
 
