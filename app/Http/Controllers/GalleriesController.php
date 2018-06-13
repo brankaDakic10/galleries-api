@@ -40,6 +40,7 @@ class GalleriesController extends Controller
                
                 'title' => 'required|min:2|max:255',
                 'description' => 'max:1000',
+                'imageUrl' => 'required'
                 ]);
             if ($validator->fails()) {
                 return new JsonResponse($validator->errors(), 400);
@@ -53,7 +54,9 @@ class GalleriesController extends Controller
 
             $gallery->save();
             
-            $allImages = $request->input('images');
+            $allImages = $request->input('imageUrl');
+
+            
              $images = [];
             
                     foreach($allImages as $image){
