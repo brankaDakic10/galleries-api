@@ -23,7 +23,8 @@ Route::post('/register', 'Auth\RegisterController@register');
 
 Route::middleware('api')->get('/','GalleriesController@index');
 Route::middleware('api')->get('/galleries/{id}','GalleriesController@show');
-// Route::middleware('api')->get('/authors/{id}','GalleriesController@show');
 Route::middleware('api')->post('/create','GalleriesController@store');
 Route::middleware('api')->put('/edit-gallery/{id}','GalleriesController@update');
 Route::middleware('api')->delete('/galleries/{id}','GalleriesController@destroy');
+Route::middleware('api')->get('/my-galleries','MyGalleriesController@index');
+Route::middleware('api')->get('/authors/{id}','UsersController@show');

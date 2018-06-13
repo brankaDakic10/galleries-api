@@ -82,6 +82,7 @@ class RegisterController extends Controller
                    'email' => 'required|string|email|unique:users',
                    'password' => 'required|string|min:8',
                    'password_confirmation' => 'required|string|min:8',
+                   'terms'=>'required'
                ]);
             //    add in password and password_confirmation
             //    numeric|min:1
@@ -98,6 +99,7 @@ class RegisterController extends Controller
            $user->lastName = $request->input('lastName');
            $user->email = $request->input('email');
            $user->password = bcrypt($request->input('password'));
+           $user->terms = $request->input('terms');
            
            $user->save();
            return $user;
