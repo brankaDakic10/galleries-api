@@ -29,7 +29,9 @@ class GalleriesController extends Controller
     {
         $gallery= Gallery::with([
             
-            'images',
+            'images' => function($query){
+                $query->orderBy('order');
+              },
             'user',
             'comments'
             
@@ -85,7 +87,8 @@ class GalleriesController extends Controller
             $gallery->title=$request->input('title');
             $gallery->description=$request->input('description');
             $gallery->user_id= $user->id;
-        
+  
+            
             $gallery->save();
 
             

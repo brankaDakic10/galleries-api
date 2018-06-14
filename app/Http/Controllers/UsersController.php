@@ -21,6 +21,7 @@ class UsersController extends Controller
         ])->find($id);
         
            return  $user ;
+       
        }
    
        
