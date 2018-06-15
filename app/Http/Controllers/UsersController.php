@@ -12,6 +12,7 @@ class UsersController extends Controller
     // author of gallery
     public function show($id)
        {
+           
         $user = User::with([
             
             'galleries',

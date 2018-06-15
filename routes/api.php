@@ -21,11 +21,14 @@ Route::post('/login','Auth\LoginController@authenticate');
 Route::post('/register', 'Auth\RegisterController@register');
 
 
-Route::middleware('jwt')->get('/','GalleriesController@index');
-Route::middleware('jwt')->get('/galleries/{id}','GalleriesController@show');
+Route::middleware('api')->get('/','GalleriesController@index');
+Route::middleware('api')->get('/galleries/{id}','GalleriesController@show');
 Route::middleware('jwt')->post('/create','GalleriesController@store');
 Route::middleware('jwt')->put('/edit-gallery/{id}','GalleriesController@update');
 Route::middleware('jwt')->delete('/galleries/{id}','GalleriesController@destroy');
 
 Route::middleware('jwt')->get('/my-galleries','MyGalleriesController@index');
-Route::middleware('jwt')->get('/authors/{id}','UsersController@show');
+Route::middleware('api')->get('/authors/{id}','UsersController@show');
+
+Route::middleware('jwt')->post('/galleries/{id}/comments','CommentsController@store')->name('comment');
+Route::middleware('jwt')->delete('/comments/{id}','CommentsController@destroy')->name('comment-delete');

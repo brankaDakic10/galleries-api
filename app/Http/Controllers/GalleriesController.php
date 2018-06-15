@@ -75,7 +75,12 @@ class GalleriesController extends Controller
                     }
             
                     $gallery->images()->saveMany($images);
-            
+
+                   
+                        // $message='Success! Saved pictures!';
+                        // return new JsonResponse( $message, 200);
+
+                  
                     return $gallery;
             
          }
