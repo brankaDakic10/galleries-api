@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Gallery;
 use Illuminate\Support\Facades\Auth;
+
 class MyGalleriesController extends Controller
 {
     public function index()
@@ -20,4 +21,9 @@ class MyGalleriesController extends Controller
         return  $galleries;
  
     }
+   
+
+     
+
+
 }

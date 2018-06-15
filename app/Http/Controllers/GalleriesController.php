@@ -33,7 +33,8 @@ class GalleriesController extends Controller
                 $query->orderBy('order');
               },
             'user',
-            'comments'
+            'comments',
+            'comments.user'
             
         ])->find($id);
         return $gallery;
@@ -49,7 +50,7 @@ class GalleriesController extends Controller
                
                 'title' => 'required|min:2|max:255',
                 'description' => 'max:1000',
-                'imageUrl' => 'required'
+                // 'imageUrl' => 'required'
                 ]);
             if ($validator->fails()) {
                 return new JsonResponse($validator->errors(), 400);
@@ -63,15 +64,20 @@ class GalleriesController extends Controller
 
             $gallery->save();
             
-            $allImages = $request->input('imageUrl');
+            $allImages = $request->input('images');
+            //var_dump($allImages);
 
             
              $images = [];
-            
+                    $i = 0;
                     foreach($allImages as $image){
-                        $newImage = new Image($image);
-            
-                        $images[] = $newImage;
+                        $newImage = new Image();
+                        $newImage->gallery_id = $gallery->id;
+                        $newImage->imageUrl = $image['imageUrl'];
+                        $newImage->order = $i;
+                        $newImage->save();
+                        //$image[] = $newImage;
+                        $i++;
                     }
             
                     $gallery->images()->saveMany($images);

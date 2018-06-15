@@ -8,7 +8,7 @@ use Validator;
 use App\Comment;
 use App\User;
 use App\Gallery;
-
+use Illuminate\Support\Facades\Auth;
 class CommentsController extends Controller
 {
     public function store(Request $request,$gallery_id)
@@ -35,13 +35,17 @@ class CommentsController extends Controller
        $comment->save();
        
        return $comment;
-       
+ 
     }
-
+    
+    
+   
 
     public function destroy($id)
     {
         // $gallery = Gallery::find($gallery_id);
+        $user = Auth::user();
+        
         $comment = Comment::find($id);
      
         $comment->delete();

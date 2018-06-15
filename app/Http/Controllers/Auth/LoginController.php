@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -55,7 +55,8 @@ class LoginController extends Controller
           }
          
           \Log::info($token);
-          return response()->json(compact('token'));
+          $user = Auth::user();
+          return response()->json(compact('token','user'));
          
              }
 }
