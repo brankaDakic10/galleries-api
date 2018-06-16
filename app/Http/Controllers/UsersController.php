@@ -15,7 +15,7 @@ class UsersController extends Controller
            
         $user = User::with([
             
-            'galleries',
+            'galleries.images',
             
             'comments'
             

@@ -102,6 +102,7 @@ class RegisterController extends Controller
            $user->terms = $request->input('terms');
            
            $user->save();
+        
            return $user;
              
            }
