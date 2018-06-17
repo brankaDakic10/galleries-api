@@ -50,7 +50,8 @@ class GalleriesController extends Controller
                
                 'title' => 'required|min:2|max:255',
                 'description' => 'max:1000',
-                // 'imageUrl' => 'required'
+                'images' => 'required',
+               'images.*.imageUrl' => ['regex:/^(http)?s?:?(\/\/[^\']*\.(?:png|jpg|jpeg))/']
                 ]);
             if ($validator->fails()) {
                 return new JsonResponse($validator->errors(), 400);
@@ -76,7 +77,7 @@ class GalleriesController extends Controller
                         $newImage->imageUrl = $image['imageUrl'];
                         $newImage->order = $i;
                         $newImage->save();
-                        //$image[] = $newImage;
+                    
                         $i++;
                     }
             

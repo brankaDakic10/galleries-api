@@ -13,9 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::middleware('auth:jwt')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+
 // public endpoint
 Route::post('/login','Auth\LoginController@authenticate');
 Route::post('/register', 'Auth\RegisterController@register');

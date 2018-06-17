@@ -80,17 +80,21 @@ class RegisterController extends Controller
                    'firstName' => 'required|string',
                    'lastName' => 'required|string',
                    'email' => 'required|string|email|unique:users',
-                   'password' => 'required|string|min:8',
-                   'password_confirmation' => 'required|string|min:8',
-                   'terms'=>'required'
-               ]);
-            //    add in password and password_confirmation
-            //    numeric|min:1
+                //    'password' => 'required|string|min:8',
+                //    'password_confirmation' => 'required|string|min:8',
+                   'terms'=>'required',
+                
+                   'password' => ['regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/'],
+                   'password_confirmation' => ['regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/']
+                   ]);
+           
            
                if ($validator->fails()) {
                    return new JsonResponse($validator->errors(), 400);
                }
                
+             
+
                if($request->input('password')!== $request->input('password_confirmation')){
                    return new JsonResponse([['Passwords doesnt match!']], 400);
                }

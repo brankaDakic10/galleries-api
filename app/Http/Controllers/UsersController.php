@@ -11,23 +11,20 @@ class UsersController extends Controller
 {
     // author of gallery
     public function show($id)
-       {
-           
+    {
+        
         $user = User::with([
             
             'galleries.images',
             
             'comments'
             
-        ])->find($id);
+            ])->find($id);
+            
+            return  $user ;
+            
+        }
         
-           return  $user ;
-       
-       }
-   
-       
-
-
-
-
-}
+        
+        
+    }

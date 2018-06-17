@@ -43,7 +43,7 @@ class CommentsController extends Controller
 
     public function destroy($id)
     {
-        // $gallery = Gallery::find($gallery_id);
+    
         $user = Auth::user();
         
         $comment = Comment::find($id);
